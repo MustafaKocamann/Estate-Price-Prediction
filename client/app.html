@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore Property Price Prediction | Real Estate AI</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="fas fa-home me-2"></i>PropertyPredict
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" href="/">
+                    <i class="fas fa-calculator me-1"></i>Price Prediction
+                </a>
+                <a class="nav-link" href="/analytics.html">
+                    <i class="fas fa-chart-line me-1"></i>Analytics
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container h-100 d-flex align-items-center justify-content-center">
+            <div class="hero-content text-center text-white">
+                <h1 class="display-4 fw-bold mb-3">
+                    <i class="fas fa-chart-line me-2"></i>Smart Price Prediction
+                </h1>
+                <p class="lead mb-0">Discover the real market value of properties in Bangalore</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <!-- Card with Shadow -->
+                <div class="prediction-card">
+                    <div class="card-header-custom">
+                        <h2 class="mb-0">
+                            <i class="fas fa-calculator me-2"></i>Calculate Property Price
+                        </h2>
+                    </div>
+
+                    <form class="form-section" id="priceForm">
+                        <!-- Area Input -->
+                        <div class="form-group mb-4">
+                            <label for="uiSqft" class="form-label fw-bold">
+                                <i class="fas fa-expand me-2"></i>Area (Square Feet)
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <input type="number" class="form-control form-control-custom" 
+                                       id="uiSqft" placeholder="e.g., 1000" value="1000" min="100" max="10000">
+                                <span class="input-group-text">sq ft</span>
+                            </div>
+                        </div>
+
+                        <!-- BHK Selection -->
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-door-open me-2"></i>Bedrooms (BHK)
+                            </label>
+                            <div class="bhk-selector">
+                                <input type="radio" id="radio-bhk-1" name="uiBHK" value="1" class="bhk-radio"/>
+                                <label for="radio-bhk-1" class="bhk-label">1</label>
+                                
+                                <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked class="bhk-radio"/>
+                                <label for="radio-bhk-2" class="bhk-label">2</label>
+                                
+                                <input type="radio" id="radio-bhk-3" name="uiBHK" value="3" class="bhk-radio"/>
+                                <label for="radio-bhk-3" class="bhk-label">3</label>
+                                
+                                <input type="radio" id="radio-bhk-4" name="uiBHK" value="4" class="bhk-radio"/>
+                                <label for="radio-bhk-4" class="bhk-label">4</label>
+                                
+                                <input type="radio" id="radio-bhk-5" name="uiBHK" value="5" class="bhk-radio"/>
+                                <label for="radio-bhk-5" class="bhk-label">5</label>
+                            </div>
+                        </div>
+
+                        <!-- Bathrooms Selection -->
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-bath me-2"></i>Bathrooms
+                            </label>
+                            <div class="bath-selector">
+                                <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1" class="bath-radio"/>
+                                <label for="radio-bath-1" class="bath-label">1</label>
+                                
+                                <input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked class="bath-radio"/>
+                                <label for="radio-bath-2" class="bath-label">2</label>
+                                
+                                <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3" class="bath-radio"/>
+                                <label for="radio-bath-3" class="bath-label">3</label>
+                                
+                                <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4" class="bath-radio"/>
+                                <label for="radio-bath-4" class="bath-label">4</label>
+                                
+                                <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5" class="bath-radio"/>
+                                <label for="radio-bath-5" class="bath-label">5</label>
+                            </div>
+                        </div>
+
+                        <!-- Location Selection -->
+                        <div class="form-group mb-4">
+                            <label for="uiLocations" class="form-label fw-bold">
+                                <i class="fas fa-map-marker-alt me-2"></i>Location in Bangalore
+                            </label>
+                            <select class="form-select form-select-lg form-select-custom" id="uiLocations">
+                                <option value="" disabled selected>Select a location...</option>
+                            </select>
+                            <small class="text-muted d-block mt-2">
+                                <i class="fas fa-info-circle me-1"></i>Choose from 280+ verified locations
+                            </small>
+                        </div>
+
+                        <!-- Estimate Button -->
+                        <button type="button" class="btn btn-estimate btn-lg w-100 fw-bold" 
+                                onclick="onClickedEstimatePrice()">
+                            <i class="fas fa-magic me-2"></i>Estimate Price
+                        </button>
+                    </form>
+
+                    <!-- Loading Spinner -->
+                    <div id="loadingSpinner" class="loading-spinner d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Calculating price...</p>
+                    </div>
+
+                    <!-- Result Section -->
+                    <div id="resultSection" class="result-section d-none mt-4">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <i class="fas fa-check-circle me-2"></i>Estimated Price
+                            </div>
+                            <div class="result-body">
+                                <h3 id="estimatedPrice" class="result-price">₹0 Lakh</h3>
+                                <div class="result-details mt-3 pt-3">
+                                    <p id="resultDetails" class="text-muted mb-0"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="alert alert-danger alert-dismissible fade d-none mt-4" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <span id="errorText"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="row mt-5">
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-database"></i>
+                            <h5>Data Driven</h5>
+                            <p>Powered by AI trained on thousands of properties</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-bolt"></i>
+                            <h5>Instant Results</h5>
+                            <p>Get accurate price estimates in milliseconds</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-map-location-dot"></i>
+                            <h5>280+ Locations</h5>
+                            <p>Coverage across Bangalore metropolitan area</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-lock"></i>
+                            <h5>Privacy Assured</h5>
+                            <p>Your queries are not stored or tracked</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="fas fa-copyright me-1"></i>2024 PropertyPredict. Powered by Machine Learning | 
+                Bangalore Real Estate Analytics
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
