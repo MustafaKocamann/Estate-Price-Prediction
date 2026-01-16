@@ -334,13 +334,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - UI Framework: Bootstrap 5
 - ML Library: Scikit-Learn
 
----
-
-## 📞 Support
-
-For support, email mustafakocaman@example.com or create an issue in this repository.
-
----
 
 <div align="center">
 
