@@ -151,7 +151,7 @@ Expected output: Location names and test predictions
 
 ## 🎮 Usage
 
-### Starting the Server
+### Starting the Server (Local Development)
 
 ```bash
 cd server
@@ -159,6 +159,22 @@ python server.py
 ```
 
 The application will be available at: **http://127.0.0.1:5000**
+
+### 🚀 Deploy to Render
+
+1. **Fork/Push to GitHub**
+2. **Go to [Render Dashboard](https://dashboard.render.com/)**
+3. **Click "New +" → "Web Service"**
+4. **Connect your GitHub repository**
+5. **Configure:**
+   - **Name:** estate-price-prediction
+   - **Environment:** Python 3
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `gunicorn --chdir server server:app`
+   - **Instance Type:** Free
+6. **Click "Create Web Service"**
+
+Your app will be live at: `https://estate-price-prediction.onrender.com`
 
 ### API Endpoints
 

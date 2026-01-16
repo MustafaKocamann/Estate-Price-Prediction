@@ -95,4 +95,10 @@ if __name__ == "__main__":
     print("📍 Running on http://127.0.0.1:5000")
     print("🌐 Open in browser: http://127.0.0.1:5000")
     print("="*60)
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    
+    # Use environment variable PORT for production (Render, Heroku, etc.)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    
+    # Run with debug=False in production
+    app.run(debug=False, host='0.0.0.0', port=port)
